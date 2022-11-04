@@ -32,8 +32,9 @@ whiteUpper = (180,18,255)
 
 
 #exp1
+# I actually coppied the full file directory here from my files
 initialh = 1
-Out=trackball("C:/Users/Aadam/OneDrive - Coventry University/Documents/Chem Eng/LDA/Portfolio 2/101.mp4"
+Out=trackball("101.mp4"
               ,greenLower,greenUpper,initialh)
 bout = Out
 # unpacking list
