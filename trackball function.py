@@ -21,7 +21,7 @@ def trackball(vid,Lower,Upper,initialheight):
     #defining initial x and y position
     x = 0
     y = 0
- # setting buffer to 10 this is the ring around object in tracking
+ # setting buffer to 10; this is the ring around object in tracking
     buffer = 10
     #setting pts deque to the size of the buffer
     pts = deque(maxlen=buffer)
