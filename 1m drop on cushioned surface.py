@@ -32,7 +32,7 @@ whiteUpper = (180,18,255)
 
 #exp1
 initialh = 1
-video_file_path = r"C:\Users\Aadam\OneDrive - Coventry University\Documents\Chem Eng\Year 1\LDA\Portfolio 2\31.mp4"
+video_file_path = r"enter the directory of video file"
 
 Out=trackball(video_file_path,greenLower,greenUpper,initialh)
 bout = Out
