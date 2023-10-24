@@ -8,7 +8,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from trackball import trackball 
-from scipy.ndimage.filters import gaussian_filter1d
 
 
 # define the lower and upper boundaries of the ball colours in 
@@ -33,12 +32,12 @@ whiteUpper = (180,18,255)
 
 #exp1
 initialh = 1
-# I actually coppied the full file directory here from my files
-Out=trackball("31.mp4"
-              ,greenLower,greenUpper,initialh)
+video_file_path = r"C:\Users\Aadam\OneDrive - Coventry University\Documents\Chem Eng\Year 1\LDA\Portfolio 2\31.mp4"
+
+Out=trackball(video_file_path,greenLower,greenUpper,initialh)
 bout = Out
 # unpacking list
-yt,xt,t,true_t,converted_xlist,converted_ylist,refined_velocity,refined_time,smooth_velocity,t_center,true_gpe,smooth_total_energy,smooth_ke,gpe, kinetic_energy = bout
+yt,xt,t,true_t,displacement,converted_xlist,converted_ylist,refined_velocity,refined_time,smooth_velocity,t_center,true_gpe,smooth_total_energy,smooth_ke,gpe, kinetic_energy = bout
 # COR calculation
 max_height1 = max(converted_ylist[50:])
 cr = round(np.sqrt( max_height1/initialh),3)
