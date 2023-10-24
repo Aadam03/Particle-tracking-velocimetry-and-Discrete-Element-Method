@@ -9,8 +9,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 import math
-# creating the DEM by using a first order Euler model 
-# defining constants
+
 r = 2/1000
 area = 4* (math.pi)*(r**2)
 volume = area *r/3
@@ -22,7 +21,7 @@ m = 0.056 #kg
 dt = 0.001
 tmax = 4
 N = int(abs(tmax/ dt))
-# pre allocating arrays
+
 rx0 = np.zeros(N)
 ry0 = np.zeros(N)
 vx0 = np.zeros(N)
@@ -74,9 +73,7 @@ plt.plot(time, ry0,label = "DEM")
 #plt.plot(time,totalenergy)
 
 ###############################################################################
-#implementing the analytical model based on SUVAT equations 
-import numpy as np 
-import matplotlib.pyplot as plt
+
 # initial time 
 t=0
 # acceleration
@@ -146,7 +143,6 @@ while counter <8: #loop will iterate 8 times (8 bounces)
 
 plt.plot(t_list,height_list,'m-',label = "empirical")
 ################################################################################
-# calling the real life model from track ball
 from trackball import trackball 
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
@@ -165,11 +161,12 @@ blackUpper = (180,255,30)
 whiteLower = (0,0,231)
 whiteUpper = (180,18,255)
 initialh=2
-Out=trackball("/3.mp4"
-              ,greenLower,greenUpper,initialh)
+video_file_path = r"C:\Users\Aadam\OneDrive - Coventry University\Documents\Chem Eng\Year 1\LDA\Portfolio 2\3.mp4"
+
+Out=trackball(video_file_path,greenLower,greenUpper,initialh)
 bout = Out  # assigning inputs to a global variable
 # unpacking list
-yt,xt,t,true_t,converted_xlist,converted_ylist,refined_velocity,refined_time,smooth_velocity,t_center,true_gpe,smooth_total_energy,smooth_ke,gpe, kinetic_energy = bout
+yt,xt,t,true_t,displacement,converted_xlist,converted_ylist,refined_velocity,refined_time,smooth_velocity,t_center,true_gpe,smooth_total_energy,smooth_ke,gpe, kinetic_energy = bout
 
 #Legnth of true time list, easier to call
 z = len(true_t)
