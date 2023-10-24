@@ -11,31 +11,47 @@ from collections import deque
 import numpy as np
 import cv2
 import imutils
-import matplotlib.pyplot as plt
 from scipy.ndimage.filters import gaussian_filter1d
-import math
+
 #creating function trackball so instead of pasting big chunk of code I can
 #just call function. This saves a lot of space!
 
+
 def trackball(vid,Lower,Upper,initialheight):
+
     #defining initial x and y position
     x = 0
     y = 0
- # setting buffer to 10; this is the ring around object in tracking
-    buffer = 10
+ # setting buffer to 10 this is the ring around object in tracking
+    buffer = 5
     #setting pts deque to the size of the buffer
     pts = deque(maxlen=buffer)
     # setting size of xt and yt deques so all positions can fit (worst case scenario)
     xt = deque(maxlen=1000)
     yt = deque(maxlen=1000)
-   # defining distance, time and velocity lists so i can update them later
-    distance = []
+   # pre allocating memory
     t = []
     velocity = []
 
     # open video and get frames pers second, handy tool!
     vs = cv2.VideoCapture(vid)
     fps = vs.get(cv2.CAP_PROP_FPS)
+    
+    #if not vs.isOpened():
+     #   print("Error: Could not open video file")
+      #  return  # or handle the error in an appropriate way
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     # keep looping
     while True:
@@ -122,8 +138,6 @@ def trackball(vid,Lower,Upper,initialheight):
         ratio = initialheight/yt[0]
         #finding diplacement by subtraction in series
         displacement = [yt[ti+1]-yt[ti] for ti in range(len(yt)-1)]
-        #finding distance  by subtraction 
-        distance = ([abs(yt[ti] - yt[ti-1]) for ti in range(1, len(yt))])
         #t is being updated with duration of video
         t.append(video_sec)
         
@@ -148,14 +162,12 @@ def trackball(vid,Lower,Upper,initialheight):
 
    
     # legnth of velocity list without anomalous values
-    m = len(refined_velocity)
     #removing anomalous reult in t list and renaming new time list true_time
     idls = [idl for idl, val in enumerate(t) if val != 0]
     
     # time without any anomalous times
     true_t = [val for idl, val in enumerate(t) if idl in idls]
     #legnth of time list without anomalous values
-    z = len(true_t)  # legnth of time array with the zeros due to capturing errors
     
     
     ## converting pixel units to metres in x and y lists
@@ -177,13 +189,11 @@ def trackball(vid,Lower,Upper,initialheight):
     #finding gpe by m*g*h where h is height in evrey frame
     gpe = (np.multiply(y_list, (g*mass)))*ratio
     
-    #removing anomalous results from gpe list
-    ipps = [idp for idp, val in enumerate(gpe) if val != 0]
+    
     #defining new gpe list without anomalous results due to tracking errors
     true_gpe = [val for idl, val in enumerate(gpe) if idl in idls]
     
-    #assiging legnth of new gpe array to p
-    p = len(true_gpe)
+
     
     #assiging legnth of ke array to l
     l = len(kinetic_energy)
@@ -202,10 +212,13 @@ def trackball(vid,Lower,Upper,initialheight):
 
 
     # defining outputs of the function which I will need to plot.
-    Out=[yt,xt,t,true_t,converted_xlist,
+    Out=[yt,xt,t,true_t,displacement,converted_xlist,
            converted_ylist,refined_velocity,refined_time,smooth_velocity,t_center,
            true_gpe,smooth_total_energy,smooth_ke,gpe, kinetic_energy]
     return Out
+
+    
+
 
     
 
