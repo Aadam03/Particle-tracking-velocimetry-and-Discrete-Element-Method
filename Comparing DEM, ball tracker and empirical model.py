@@ -161,7 +161,7 @@ blackUpper = (180,255,30)
 whiteLower = (0,0,231)
 whiteUpper = (180,18,255)
 initialh=2
-video_file_path = r"C:\Users\Aadam\OneDrive - Coventry University\Documents\Chem Eng\Year 1\LDA\Portfolio 2\3.mp4"
+video_file_path = r" file directory.mp4"
 
 Out=trackball(video_file_path,greenLower,greenUpper,initialh)
 bout = Out  # assigning inputs to a global variable
